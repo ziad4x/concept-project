@@ -1,4 +1,3 @@
-# budget.py
 from typing import Dict, List
 
 def set_budget(budgets: Dict[str, float], category: str, amount: float) -> Dict[str, float]:
@@ -22,4 +21,3 @@ def budget_alert(budgets: Dict[str, float], usage: Dict[str, float]) -> List[str
         elif used > 0.9 * budgets.get(category, 0):
             alerts.append(f"Warning: You are close to exceeding the budget for {category}. Used: ${used}, Budget: ${budgets[category]}")
     return alerts
-

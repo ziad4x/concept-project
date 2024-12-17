@@ -1,4 +1,3 @@
-# user_input.py
 from typing import Dict, Tuple, List
 
 def get_user_input_for_transaction() -> Dict:

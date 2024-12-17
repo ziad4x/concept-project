@@ -1,4 +1,3 @@
-# analytics.py
 from typing import List, Dict
 
 def spending_summary(transactions: List[Dict]) -> Dict[str, float]:

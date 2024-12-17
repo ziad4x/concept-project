@@ -1,4 +1,3 @@
-# savings.py
 from typing import List, Dict
 
 def set_savings_goal(goals: List[Dict], target: float, months: int) -> List[Dict]:

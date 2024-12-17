@@ -1,4 +1,3 @@
-# transaction.py
 import csv
 import json
 from typing import List, Dict
@@ -25,11 +24,19 @@ def import_transactions_from_csv(file_path: str) -> List[Dict]:
 
 def import_transactions_from_json(file_path: str) -> List[Dict]:
     """Import transactions from a JSON file."""
-    with open(file_path, mode='r') as file:
-        transactions = json.load(file)
-        # Ensure each transaction is processed correctly
-        return [{**transaction, 'amount': float(transaction['amount'])} for transaction in transactions if isinstance(transaction, dict)]
-
+    try:
+        with open(file_path, mode='r') as file:
+            transactions = json.load(file)
+            return [{**transaction, 'amount': float(transaction['amount'])} for transaction in transactions if isinstance(transaction, dict)]
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON: {e}")
+        return []
+    except FileNotFoundError:
+        print(f"Error: File not found - {file_path}")
+        return []
+    except Exception as e:
+        print(f"An error occurred while importing JSON: {e}")
+        return []
 
 def export_transactions(file_path: str, transactions: List[Dict]) -> None:
     """Export transactions to a file (CSV or JSON)."""

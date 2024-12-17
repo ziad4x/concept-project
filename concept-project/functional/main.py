@@ -1,4 +1,3 @@
-# main.py
 import os
 from transaction import record_transaction, import_transactions, export_transactions
 from budget import set_budget, track_budget_usage, budget_alert
