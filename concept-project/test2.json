@@ -1,0 +1,16 @@
+{
+    "transactions": [
+        {
+            "Amount": 300.0,
+            "Category": "food",
+            "Date": "2020-12-12",
+            "Type": "income"
+        },
+        {
+            "Amount": 300.0,
+            "Category": "food",
+            "Date": "2021-1-12",
+            "Type": "expense"
+        }
+    ]
+}

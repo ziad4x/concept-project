@@ -1,0 +1,14 @@
+{
+    "transactions": [
+        {
+            "Amount": 100.0,
+            "Category": "Groceries",
+            "Date": "2024-12-01"
+        },
+        {
+            "Amount": 50.5,
+            "Category": "Utilities",
+            "Date": "2024-12-05"
+        }
+    ]
+}
