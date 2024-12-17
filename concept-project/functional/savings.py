@@ -11,6 +11,7 @@ def set_savings_goal(goals: List[Dict], target: float, months: int) -> List[Dict
         'monthly_savings': monthly_savings,
         'months_remaining': months
     }
+    
     return goals + [goal]
 
 def display_savings_goal_details(goal: Dict) -> str:

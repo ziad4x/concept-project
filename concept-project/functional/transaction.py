@@ -2,9 +2,9 @@ import csv
 import json
 from typing import List, Dict
 
-def record_transaction(transactions: List[Dict], amount: float, category: str, date: str) -> List[Dict]:
-    """Record a new transaction."""
-    new_transaction = {'amount': amount, 'category': category, 'date': date}
+def record_transaction(transactions: List[Dict], amount: float, category: str, date: str, transaction_type: str) -> List[Dict]:
+    """Record a new transaction (income or expense)."""
+    new_transaction = {'amount': amount, 'category': category, 'date': date, 'type': transaction_type}
     return transactions + [new_transaction]
 
 def import_transactions(file_path: str) -> List[Dict]:
@@ -20,14 +20,14 @@ def import_transactions_from_csv(file_path: str) -> List[Dict]:
     """Import transactions from a CSV file."""
     with open(file_path, newline='', mode='r') as file:
         reader = csv.DictReader(file)
-        return [{**row, 'amount': float(row['amount'])} for row in reader]
+        return [{**row, 'amount': float(row['amount']), 'type': row['type']} for row in reader]
 
 def import_transactions_from_json(file_path: str) -> List[Dict]:
     """Import transactions from a JSON file."""
     try:
         with open(file_path, mode='r') as file:
             transactions = json.load(file)
-            return [{**transaction, 'amount': float(transaction['amount'])} for transaction in transactions if isinstance(transaction, dict)]
+            return [{**transaction, 'amount': float(transaction['amount']), 'type': transaction['type']} for transaction in transactions if isinstance(transaction, dict)]
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
         return []

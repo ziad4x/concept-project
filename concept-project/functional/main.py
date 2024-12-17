@@ -15,7 +15,7 @@ def main():
     goals = []
     previous_month_transactions = []
 
-    while True:
+    def menu():
         print("\n--- Personal Finance Management ---")
         print("1. Record a Transaction")
         print("2. Set a Budget")
@@ -29,11 +29,18 @@ def main():
         print("10. Exit")
         
         choice = input("Choose an option (1-10): ")
+        return choice
+
+    def handle_choice(choice):
+        nonlocal transactions, budgets, goals, previous_month_transactions
 
         if choice == '1':
-            transaction = get_user_input_for_transaction()
-            transactions = record_transaction(transactions, transaction['amount'], transaction['category'], transaction['date'])
-            print(f"Transaction added: {transaction}")
+            try:
+                transaction = get_user_input_for_transaction()
+                transactions = record_transaction(transactions, transaction['amount'], transaction['category'], transaction['date'], transaction['type'])
+                print(f"Transaction added: {transaction}")
+            except ValueError as e:
+                print(e)
 
         elif choice == '2':
             category, amount = get_user_input_for_budget()
@@ -146,10 +153,17 @@ def main():
 
         elif choice == '10':
             print("Exiting the program.")
-            break
+            return False
         
         else:
             print("Invalid choice, please try again.")
+
+        return True
+
+    while True:
+        choice = menu()
+        if not handle_choice(choice):
+            break
 
 if __name__ == "__main__":
     main()
